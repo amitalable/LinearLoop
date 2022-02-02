@@ -1,0 +1,32 @@
+.sidebar {
+  transition: width 0.25s;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 6px 14px;
+  background-color: white;
+}
+
+.sidebar-mini {
+  transition: width 1s;
+  width: 50px;
+}
+
+.link_name {
+  font-size: 22px;
+}
+
+.nav_link {
+  display: flex;
+  justify-content: space-between;
+  color: grey;
+  &:hover {
+    color: blue;
+  }
+}
+
+.link_icon {
+  font-size: 22px;
+}

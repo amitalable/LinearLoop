@@ -1,0 +1,33 @@
+.settings {
+  display: flex;
+  margin-top: 5rem;
+  margin-right: 40px;
+  margin-left: 250px;
+  color: whitesmoke;
+}
+
+.setting-list {
+  // margin-top: 9rem;
+  position: relative;
+  border: 2px solid lightyellow;
+  width: 20rem;
+  min-height: 50vh;
+
+  .link {
+    margin: 20px;
+    height: 10vh;
+    box-sizing: border-box;
+    // border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    font-weight: bold;
+
+    justify-content: center;
+    &:hover {
+      background: rgba(77, 21, 21, 0.671);
+    }
+    .link-icon {
+      margin-right: 10px;
+    }
+  }
+}

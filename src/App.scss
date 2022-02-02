@@ -1,0 +1,26 @@
+@use "./sass/SignUp";
+@use "./sass/leftNavigation";
+@use "./sass/settings";
+@use "./sass/myProfile";
+@use "./sass/credentials";
+@use "./sass/sessions";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: cadetblue;
+}
+
+.App {
+  justify-content: center;
+}

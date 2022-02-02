@@ -1,0 +1,20 @@
+.my-profile {
+  position: relative;
+  border: 2px solid lightyellow;
+  width: 60rem;
+  min-height: 50vh;
+  //margin-left: 600px;
+  padding: 30px;
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .emailGroup {
+    margin-top: 20px;
+  }
+  .btn-save {
+    float: right;
+    width: 100px;
+  }
+}
