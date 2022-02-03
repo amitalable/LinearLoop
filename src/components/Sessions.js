@@ -1,8 +1,10 @@
 import React from "react";
 import { Row, Col, Table, Button } from "reactstrap";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useSessionList } from "../hooks/useSessionList";
 
 const Sessions = () => {
+  const { response } = useSessionList();
   return (
     <div className="sessions">
       <div className="title">

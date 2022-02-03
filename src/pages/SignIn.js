@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../sass/_signIn.scss";
 import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
+import { SignInContext } from "../context/SignInContext";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const { token, setEmail, setPassword } = useContext(SignInContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEmail(e.target[0].value);
+    setPassword(e.target[1].value);
+  };
+
+  if (token) {
+    return navigate("/dashboard");
+  }
+
   return (
     <div className="signinDiv">
-      <Form className="form">
+      <Form className="form" onSubmit={handleSubmit}>
         <h4 className="formTitle">LOGO</h4>
         <FormGroup>
           <Row>
@@ -18,6 +32,7 @@ const SignIn = () => {
                 id="emailAddress"
                 placeholder="xyz@gmail.com"
                 name="emailAddress"
+                required
               />
             </Col>
           </Row>
@@ -33,6 +48,7 @@ const SignIn = () => {
                 id="password"
                 placeholder="Password"
                 name="password"
+                required
               />
             </Col>
             <Col md={12} className="underline">
@@ -40,12 +56,11 @@ const SignIn = () => {
             </Col>
           </Row>
         </FormGroup>
-
         <FormGroup>
           <Row>
             <Col md={4}></Col>
             <Col md={7}>
-              <Button className="btnLogIn" color="primary">
+              <Button className="btnLogIn" color="primary" type="submit">
                 Log In
               </Button>
             </Col>

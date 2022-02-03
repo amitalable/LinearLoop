@@ -3,8 +3,10 @@ import { Input, Row, Col, Table, Button } from "reactstrap";
 import { FiEyeOff, FiEye, FiEdit3 } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useGetCredentials } from "../hooks/useGetCredentials";
 
 const Credentials = () => {
+  const { credentialList, count, total } = useGetCredentials();
   return (
     <div className="credentials">
       <div className="title">
@@ -52,6 +54,18 @@ const Credentials = () => {
               <RiDeleteBinLine />
             </td>
           </tr>
+          {credentialList.map((cred) => (
+            <tr>
+              <td>{cred.name}</td>
+              <td>{cred.clientId}</td>
+              <td>{cred.clientSecret}</td>
+              <td>
+                <FiEye />
+                <FiEdit3 />
+                <RiDeleteBinLine />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
       <div className="pagination">

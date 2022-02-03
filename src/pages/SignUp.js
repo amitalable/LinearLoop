@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button, Col, Row } from "reactstrap";
+import { SignUpContext } from "../context/SignUpContext";
 
 const SignUp = () => {
+  const {
+    user,
+    orgHasUser,
+    setFirstName,
+    setLastName,
+    setEmail,
+    setOrganizationName,
+    setPassword,
+    setCPassword,
+  } = useContext(SignUpContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFirstName(e.target[0].value);
+    setLastName(e.target[1].value);
+    setEmail(e.target[2].value);
+    setPassword(e.target[3].value);
+    setOrganizationName(e.target[4].value);
+    setCPassword(e.target[3].value);
+  };
+
+  if (user?.id) {
+    return navigate("/signin");
+  }
+
   return (
     <div className="signupDiv">
-      <Form className="form">
+      <Form className="form" onSubmit={handleSubmit}>
         <h4 className="formTitle">LOGO</h4>
         <FormGroup>
           <Row>
@@ -22,6 +50,7 @@ const SignUp = () => {
                 id="firstName"
                 placeholder="First Name"
                 name="firstName"
+                required
               />
             </Col>
             <Col md={6}>
@@ -30,6 +59,7 @@ const SignUp = () => {
                 id="lastName"
                 placeholder="Last Name"
                 name="lastName"
+                required
               />
             </Col>
           </Row>
@@ -50,6 +80,7 @@ const SignUp = () => {
                 id="emailAddress"
                 placeholder="xyz@gmail.com"
                 name="emailAddress"
+                required
               />
             </Col>
             <Col md={6}>
@@ -58,6 +89,7 @@ const SignUp = () => {
                 id="password"
                 placeholder="Password"
                 name="password"
+                required
               />
             </Col>
           </Row>
@@ -72,6 +104,7 @@ const SignUp = () => {
                 id="company"
                 placeholder="Company / Organization"
                 name="company"
+                required
               />
             </Col>
           </Row>
@@ -81,7 +114,7 @@ const SignUp = () => {
           <Row>
             <Col md={4}></Col>
             <Col md={8}>
-              <Button className="btnSignUp" color="primary">
+              <Button className="btnSignUp" color="primary" type="submit">
                 Sign Up
               </Button>
             </Col>

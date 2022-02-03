@@ -1,10 +1,22 @@
 import React from "react";
 import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { useChangePassword } from "../hooks/useChangePassword";
 const ChangePassword = () => {
+  const change = useChangePassword;
+
+  const handleSubmit = (e) => {
+    const data = {
+      oldPassword: e.target[0].value,
+      newPassword: e.target[1].value,
+      confirmPassword: e.target[2].value,
+    };
+    const { success } = change({ ...data });
+    alert(success);
+  };
   return (
     <div className="my-profile">
       <div className="title">Change Your Password</div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Row className="currentPassword">
             <Col md={12}>
@@ -16,6 +28,7 @@ const ChangePassword = () => {
                 id="currentPassword"
                 placeholder="Password"
                 name="currentPassword"
+                required
               />
             </Col>
           </Row>
@@ -29,6 +42,7 @@ const ChangePassword = () => {
                 id="newPassword"
                 placeholder="New Password"
                 name="newPassword"
+                required
               />
             </Col>
           </Row>
@@ -42,13 +56,14 @@ const ChangePassword = () => {
                 id="confirmNewPassword"
                 placeholder="Confirm New Password"
                 name="confirmNewPassword"
+                required
               />
             </Col>
           </Row>
         </FormGroup>
         <br />
         <FormGroup>
-          <Button className="btn-save" color="primary">
+          <Button className="btn-save" color="primary" type="submit">
             Save
           </Button>
         </FormGroup>

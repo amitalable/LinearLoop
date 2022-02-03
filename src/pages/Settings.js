@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SettingLink from "../components/SettingLink";
 import { BsPerson } from "react-icons/bs";
 import { BiLockAlt } from "react-icons/bi";
@@ -8,6 +8,7 @@ import MyProfile from "../components/MyProfile";
 import ChangePassword from "../components/ChangePassword";
 import Credentials from "../components/Credentials";
 import Sessions from "../components/Sessions";
+import LeftNavigation from "../components/LeftNavigation";
 
 const Settings = () => {
   const links = [
@@ -16,18 +17,40 @@ const Settings = () => {
     { data: "Marketo Credentials", icon: <AiOutlineAppstore /> },
     { data: "Sessions", icon: <FiServer /> },
   ];
+
+  const [check, setCheck] = useState({
+    "My Profile": true,
+    "Change Password": false,
+    "Marketo Credentials": false,
+    Sessions: false,
+  });
+
+  const handleCheck = (data) => {
+    const newCheck = {
+      "My Profile": false,
+      "Change Password": false,
+      "Marketo Credentials": false,
+      Sessions: false,
+    };
+    newCheck[data] = true;
+    setCheck({ ...newCheck });
+  };
+
   return (
-    <div className="settings">
-      <div className="setting-list">
-        {links.map((link) => (
-          <SettingLink key={link.data} {...link} />
-        ))}
+    <>
+      <LeftNavigation />
+      <div className="settings">
+        <div className="setting-list">
+          {links.map((link) => (
+            <SettingLink key={link.data} handle={handleCheck} {...link} />
+          ))}
+        </div>
+        {check["My Profile"] && <MyProfile />}
+        {check["Change Password"] && <ChangePassword />}
+        {check["Marketo Credentials"] && <Credentials />}
+        {check["Sessions"] && <Sessions />}
       </div>
-      {/* <MyProfile /> */}
-      {/* <ChangePassword /> */}
-      {/* <Credentials /> */}
-      <Sessions />
-    </div>
+    </>
   );
 };
 

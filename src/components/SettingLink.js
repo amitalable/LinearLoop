@@ -1,8 +1,8 @@
 import React from "react";
 
-const SettingLink = ({ icon, data }) => {
+const SettingLink = ({ handle, icon, data }) => {
   return (
-    <div className="link">
+    <div className="link" onClick={() => handle(data)}>
       <span className="link-icon">{icon}</span>
       <span className="link-data">{data}</span>
     </div>
